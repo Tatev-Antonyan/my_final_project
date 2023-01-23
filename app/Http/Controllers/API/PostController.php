@@ -1,9 +1,12 @@
 <?php
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Post as PostResource;
 
@@ -19,9 +22,34 @@ class PostController extends BaseController
 
     public function index()
     {
-        $posts = Post::all()->paginate(10);
+        return $this->sendResponse(Post::paginate(10), []);
+    }
 
-        return $this->sendResponse(PostResource::collection($posts), 'Posts retrieved successfully.');
+//    public function search(Request $request){
+//        $search = '';
+//        if ($request->has('search')){
+//            $search = $request->get('search');
+//        }
+//        return User::with('posts')->where('name', 'LIKE', "%$search%")
+//            ->whereHas('posts', function ($query) use ($search){
+//                $query->where('title', 'LIKE', "%$search%");
+//                $query->orWhere('text', 'LIKE', "%$search%");
+//            })->paginate(10);
+//       // $user = User::with(['posts', 'image', 'position'])->get();
+////        $user->image->path
+////        $user->tasks()->exists()
+////        return view('',[]);
+//        //return $users;
+//    }
+
+    public function searchByName($parameter){
+        $post = Post::where('title', 'LIKE', "%$parameter%")->get();
+        return $post;
+    }
+
+    public function ownPosts():JsonResponse
+    {
+        return $this->sendResponse(Post::where('user_id', Auth::user()->id)->paginate(10), []);
     }
 
     /**
@@ -94,6 +122,7 @@ class PostController extends BaseController
 
         $post->title = $input['title'];
         $post->text = $input['text'];
+        $post->user_id = $input['user_id'];
         $post->save();
 
         return $this->sendResponse(new PostResource($post), 'Post updated successfully.');
@@ -106,7 +135,7 @@ class PostController extends BaseController
      * @return \Illuminate\Http\JsonResponse
      */
 
-    public function destroy(Post $post)
+    public function delete(Post $post)
     {
         $post->delete();
         return $this->sendResponse([], 'Post deleted successfully.');

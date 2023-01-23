@@ -4,9 +4,11 @@ namespace App\Models;
 
 //use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 
 class User extends Authenticatable
@@ -26,8 +28,10 @@ class User extends Authenticatable
         'gender',
         'email',
         'password',
-
+        'image_id'
     ];
+
+    protected $with = ['image', 'posts'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,13 +52,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function post()
+    public function image() :BelongsTo
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(Image::class);
     }
 
-    public function user_role()
+    public function posts() :HasMany
     {
-        return $this->hasMany(User_Role::class);
+        return $this->hasMany(Post::class);
     }
 }

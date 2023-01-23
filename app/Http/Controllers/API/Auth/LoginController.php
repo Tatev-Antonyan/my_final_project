@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
-use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\JsonResponse;
+use Laravel\Passport\RefreshToken;
+use Laravel\Passport\Token;
 
 class LoginController extends BaseController
 {
@@ -20,7 +19,7 @@ class LoginController extends BaseController
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            $success['token'] = $user->createToken('MyApp')->plainTextToken;
+            $success['token'] = $user->createToken(config('app.name'))->accessToken;
             $success['name'] = $user;
 
             return $this->sendResponse($success, 'User login successfully.');
@@ -29,9 +28,12 @@ class LoginController extends BaseController
         }
     }
 
-    public function logout (Request $request) {
+    public function logout(Request $request)
+    {
         Auth::user()->token()->revoke();
         $response = ['message' => 'You have been successfully logged out!'];
+
         return response($response, 200);
     }
 }
+
