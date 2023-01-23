@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
-use App\Http\Requests\StorePermissionRequest;
-use App\Http\Requests\UpdatePermissionRequest;
+use App\Models\Image;
+use App\Http\Requests\StoreImageRequest;
+use App\Http\Requests\UpdateImageRequest;
 
-class PermissionController extends Controller
+class ImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePermissionRequest  $request
+     * @param  \App\Http\Requests\StoreImageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePermissionRequest $request)
+    public function store(StoreImageRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class PermissionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Permission  $permission
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Permission $permission)
+    public function show(Image $image)
     {
         //
     }
@@ -53,10 +53,10 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Permission  $permission
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit(Image $image)
     {
         //
     }
@@ -64,11 +64,11 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePermissionRequest  $request
-     * @param  \App\Models\Permission  $permission
+     * @param  \App\Http\Requests\UpdateImageRequest  $request
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePermissionRequest $request, Permission $permission)
+    public function update(UpdateImageRequest $request, Image $image)
     {
         //
     }
@@ -76,10 +76,10 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Permission  $permission
+     * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permission $permission)
+    public function destroy(Image $image)
     {
         //
     }

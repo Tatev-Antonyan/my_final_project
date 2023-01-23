@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user__roles', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('roles_id');
+            $table->string('name')->nullable();
+            $table->string('url');
+            $table->string('path');
+            $table->string('type')->default(1);
+            $table->timestamps();
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user__roles');
+        Schema::dropIfExists('images');
     }
 };

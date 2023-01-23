@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\LoginController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,13 +17,18 @@ use App\Http\Controllers\API\PostController;
 |
 */
 Route::post('register', [RegisterController::class, 'register']);
-Route::post('login', [RegisterController::class, 'login']);
-Route::get('posts', [PostController::class, 'index']);
-Route::post('posts', [PostController::class, 'store']);
+Route::post('login', [LoginController::class, 'login']);
+Route::get('posts', [PostController::class, 'index'])->middleware('auth:api');
+Route::post('posts', [PostController::class, 'store'])->middleware('auth:api');
 Route::get('posts', [PostController::class, 'show']);
-Route::put('posts', [PostController::class, 'update']);
-Route::delete('posts', [PostController::class, 'delete']);
-
+Route::middleware('auth:api')->group( function () {
+    Route::get('own/posts', [PostController::class, 'ownPosts']);
+});
+Route::put('posts', [PostController::class, 'update'])->middleware('auth:api');
+Route::delete('posts', [PostController::class, 'delete'])->middleware('auth.api');
+Route::middleware('auth:api')->group( function () {
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout.api');
+});
 //Route::middleware('auth:api')->group( function () {
 //    Route::resource('posts', PostController::class);
 //});

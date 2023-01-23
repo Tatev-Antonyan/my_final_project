@@ -14,12 +14,12 @@ class PostController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
 
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::all()->paginate(10);
 
         return $this->sendResponse(PostResource::collection($posts), 'Posts retrieved successfully.');
     }
@@ -28,7 +28,7 @@ class PostController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
 
     public function store(Request $request)
@@ -56,7 +56,7 @@ class PostController extends BaseController
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
 
     public function show($id)
@@ -64,7 +64,7 @@ class PostController extends BaseController
         $post = Post::find($id);
 
         if (is_null($post)) {
-            return $this->sendError('Product not found.');
+            return $this->sendError('Post not found.');
         }
 
         return $this->sendResponse(new PostResource($post), 'Post retrieved successfully.');
@@ -75,7 +75,7 @@ class PostController extends BaseController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
 
     public function update(Request $request, Post $post)
@@ -103,12 +103,12 @@ class PostController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
 
-    public function destroy(Post $product)
+    public function destroy(Post $post)
     {
-        $product->delete();
+        $post->delete();
         return $this->sendResponse([], 'Post deleted successfully.');
     }
 

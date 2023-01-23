@@ -3,6 +3,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as Controller;
+use Illuminate\Http\JsonResponse;
+use function response;
 
 class BaseController extends Controller
 {
@@ -25,7 +27,7 @@ class BaseController extends Controller
     /**
      * return error response.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function sendError($error, $errorMessages = [], $code = 404)
     {
