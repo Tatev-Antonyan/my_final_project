@@ -1,66 +1,106 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# Բարի Գալուստ
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Այս էջը ձեզ կօգնի ավելի հեշտ ու արագ հասկանալ, թե ինչպես կարող եք ստուգել էջի աշխատանքը։ Ստորև կարելի է տեսնել որոշ գործիքներ, որոնք անհրաժեշտ են պրոյեկտի հետ աշխատելու համար։
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Առաջին հերթին, իհարկե, անհրաժեշտ է ունենալ սերվեր։ Ես օգտագործել եմ _[OpenServer](https://ospanel.io/)_։ 
+- API-ով տվյալները ուղարկելու, ստանալու ու ստուգելու համար կարելի է օգտագործել _[Postman](https://www.postman.com/)_:
+- Անհրաժեշտ է ունենալ տվյալների բազա, որը մեր դեպքում _MySQL_-ն է։
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Սկսեցի՛նք
 
-## Learning Laravel
+Պրոյեկտը editor-ով բացելուն պես անհրաժեշտ է բացել ․env ֆայլը և տալ անհրաժեշտ պարամետրերը։ Հատկապես պետք է ուշադրություն դարձնել DB_USERNAME-ի ու DB_PASSWORD-ի ճիշտ գրված լինելուն, քանի որ տարբեր տեղերում տարբեր են։ Մեծամասամբ այն ունի հետևյալ տեսքը․
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- DB_USERNAME=root 
+- DB_PASSWORD=root(կարող է նաև դատարկ լինել)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Եթե պատրաստի բազա չունեք, կարող եք օգտագործել php artisan migrate --seed հրամանը աղյուսակներ ստեղծելու և այն ինֆորմացիայով լցնելու համար։
+## Ստուգում ենք մեր կոդը Postman-ով
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Հիմա արդեն կարող ենք անցնել կոդի ստուգմանը։ Մուտք ենք գործում Postman։ 
 
-## Laravel Sponsors
+https://documenter.getpostman.com/view/25354152/2s8ZDa1fyaWe 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Վերոնշյալ լինքով կարող եք տեսնել իմ կատարած փորձարկումները, բայց եթե ինքներդ եք ցանկանում փորձել հետևեք ստորև նշված քայլերի հերթականությանը։
 
-### Premium Partners
+#### Registration
+- Ռեգիստրացիայի համար օգտագործեք POST մեթոդը և այս հղումը․ http://127.0.0.1:8000/api/auth/register
+- Headers բաժնում անհրաժեշտ է ներառել հետևյալ ինֆորմացիան․
+                                  { 
+                                    key: Accept,
+                                    value: application/json
+                                  }
+- Auth բաժնում ընտրեք No Auth տարբերակը։
+- Սեղմե՛ք send կոճակը։ Եթե success: true ստացաք, ուրեմն բարեհաջող գրանցվել եք։
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### Login
+- Մուտք գործելու համար նույնպես օգտագործեք POST մեթոդը և այս հղումը․ http://127.0.0.1:8000/api/auth/login
+- Body բաժնում լրացրեք անհրաժեշտ ինֆորմացիան(email, password)։
+- Headers բաժնում անհրաժեշտ է ներառել հետևյալ ինֆորմացիան․
+  {
+  key: Accept,
+  value: application/json
+  }
+- Auth բաժնում ընտրեք No Auth տարբերակը։
+- Վերադարձված response-ի մեջ գտեք token-ը, copy արեք և պահեք։
+- Սեղմե՛ք send կոճակը։ Եթե success: true ստացաք, ուրեմն բարեհաջող մուտք եք գործել։
 
-## Contributing
+#### Post/create
+- Փոսթ ստեղծելու համար նույնպես օգտագործեք POST մեթոդը և այս հղումը․ http://127.0.0.1:8000/api/own/posts/
+- Body բաժնում լրացրեք անհրաժեշտ ինֆորմացիան(title, text, user_id)։
+- Headers բաժնում անհրաժեշտ է ներառել հետևյալ ինֆորմացիան․
+  {
+  key: Accept,
+  value: application/json
+  }
+- Auth բաժնում ընտրեք Bearer Token տարբերակը և տեղադրեք Login-ի բաժնում ստացված token-ը։
+- Սեղմե՛ք send կոճակը։ Եթե success: true ստացաք, ուրեմն բարեհաջող ստեղծել եք փոսթը։
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Post/update
+- Փոսթ թարմացնելու/փոփխելու համար նույնպես օգտագործեք POST մեթոդը և այս հղումը․ http://127.0.0.1:8000/api/own/posts/
+- Հղման մեջ /-ից հետո տեղադրեք Փոսթի id-ն։
+- Body բաժնում լրացրեք անհրաժեշտ ինֆորմացիան(title, text, user_id, ինչպես նաև **_method** key-ին տվեք **PUT** արժեքը)։
+- Headers բաժնում անհրաժեշտ է ներառել հետևյալ ինֆորմացիան․
+  {
+  key: Accept,
+  value: application/json
+  }
+- Auth բաժնում ընտրեք Bearer Token տարբերակը և տեղադրեք Login-ի բաժնում ստացված token-ը։
+- Սեղմե՛ք send կոճակը։ Եթե success: true ստացաք, ուրեմն բարեհաջող թարմացրել եք ձեր փոսթը։
 
-## Code of Conduct
+#### Post/index
+- Փոսթերը նայելու համար նույնպես օգտագործեք GET մեթոդը և այս հղումը․ http://127.0.0.1:8000/api/posts/
+- Headers բաժնում անհրաժեշտ է ներառել հետևյալ ինֆորմացիան․
+  {
+  key: Accept,
+  value: application/json
+  }
+- Auth բաժնում ընտրեք No Auth տարբերակը։
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Post/delete
+- Փոսթ ջնջելու համար օգտագործեք DELETE մեթոդը և այս հղումը․ http://127.0.0.1:8000/api/own/posts/
+- Headers բաժնում անհրաժեշտ է ներառել հետևյալ ինֆորմացիան․
+  {
+  key: Accept,
+  value: application/json
+  }
+- Auth բաժնում ընտրեք Bearer Token տարբերակը և տեղադրեք Login-ի բաժնում ստացված token-ը։
 
-## Security Vulnerabilities
+#### Post/search
+- Փոսթ գտնելու համար օգտագործեք GET մեթոդը և այս հղումը․ http://127.0.0.1:8000/api/own/search_data/
+- Հղման մեջ /-ից հետո գրեք այն, ինչ փնտրում եք։
+- Headers բաժնում անհրաժեշտ է ներառել հետևյալ ինֆորմացիան․
+  {
+  key: Accept,
+  value: application/json
+  }
+- Auth բաժնում ընտրեք Bearer Token տարբերակը և տեղադրեք Login-ի բաժնում ստացված token-ը։
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+### Ահա և վերջ
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Մի քանի քայլ կատարելով կարողացանք API-ի միջոցով տալ և ստանալ ինֆորմացիա։ Այն շատ արագ ու հեշտ է դարձնում ինֆորմացիայի փոխանցման գործընթացը։ Եթե հարցեր մնացին feel free to contact me. 
+
+

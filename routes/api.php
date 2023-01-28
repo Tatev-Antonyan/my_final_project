@@ -41,8 +41,9 @@ Route::get('posts', [PostController::class, 'index']);
 Route::middleware('auth:api')->group( function () {
     Route::get('own/posts', [PostController::class, 'ownPosts']);
     Route::post('own/posts', [PostController::class, 'store']);
-    Route::put('own/posts', [PostController::class, 'update']);
+    Route::put('own/posts/{post}', [PostController::class, 'update']);
     Route::delete('own/posts', [PostController::class, 'delete']);
+    Route::get('own/search_data/{parameter}', [PostController::class, 'searchByName']);
 });
+
 Route::apiResource('posts', PostController::class);
-Route::get('own/search_data/{parameter}', [PostController::class, 'searchByName']);
